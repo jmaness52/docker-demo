@@ -1,0 +1,8 @@
+.alert {
+    color: red;
+}
+
+button:disabled {
+    background-color: gray;
+    opacity: 0.1;
+}

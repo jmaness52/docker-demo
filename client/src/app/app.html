@@ -1,0 +1,15 @@
+<div id="page-wrap">
+    <div id="max-width-column" *ngIf="user$ | async">
+        <app-nav-bar></app-nav-bar>
+        <div id="content-wrap">
+            <router-outlet />
+        </div>
+        <button (click)="logout()">Sign Out</button>
+    </div>
+    
+    <div id="max-width-column" *ngIf="!(user$ | async)">
+        <h1>Sign in to buy and sell!</h1>
+        <button (click)="login()">Sign in with Google</button>
+    </div>
+</div>
+

@@ -1,0 +1,72 @@
+<form #listingForm="ngForm" (ngSubmit)="onButtonClicked()">
+        <div>
+            <label for="name">
+                Name:
+            </label>
+            <input id="name" name="name" type="text" required minlength="3" maxlength="45" [(ngModel)]="name" #nameInput="ngModel" />
+            @if (nameInput.invalid && (nameInput.dirty || nameInput.touched)) {
+            <div class="alert">
+              @if (nameInput.hasError('required')) {
+                <div>
+                  Name is required.
+                </div>
+              }
+              @if (nameInput.hasError('minlength')) {
+                <div>
+                  Name must be at least 3 characters long.
+                </div>
+              }
+              @if (nameInput.hasError('maxlength')) {
+                <div>
+                  Name must be less than 45 characters.
+                </div>
+              }
+            </div>
+          }
+        </div>
+        <div>
+            <label for="description">
+                Item Description:
+            </label>
+            <input id="description" name="description" type="text" required minlength="10" maxlength="1000" [(ngModel)]="description" #descriptionInput="ngModel" />
+            @if (descriptionInput.invalid && (descriptionInput.dirty || descriptionInput.touched)) {
+            <div class="alert">
+              @if (descriptionInput.hasError('required')) {
+                <div>
+                  Description is required.
+                </div>
+              }
+              @if (descriptionInput.hasError('minlength')) {
+                <div>
+                  Description must be at least 10 characters long.
+                </div>
+              }
+              @if (descriptionInput.hasError('maxlength')) {
+                <div>
+                  Description must be less than 1000 characters.
+                </div>
+              }
+            </div>
+            }
+        </div>
+        <div>
+            <label for="price">
+                Price:
+            </label>
+            <input 
+            id="price" 
+            name="price" 
+            type="text" 
+            numberValidator
+            [(ngModel)]="price" 
+            #priceInput="ngModel" />
+             @if ((priceInput.hasError('invalidNumber') || priceInput.invalid )&& (priceInput.dirty || priceInput.touched)) {
+            <div class="alert">
+                <div>
+                  Enter a number greater than 0.01
+                </div>
+            </div>
+            }
+        </div>
+        <button type="submit" [disabled]="listingForm.invalid">{{submitButtonText}}</button>
+    </form>
