@@ -26,7 +26,7 @@ export class NewListingPage implements OnInit {
 
   onSubmit(newListing: Listing): void {
     this.listingService.createListing(newListing.name, newListing.description, newListing.price)
-    .subscribe(() => {
+    .then(() => {
       this.router.navigateByUrl('/my-listings');
     });
   }

@@ -38,7 +38,7 @@ export class EditListingPage implements OnInit {
   onSubmit(editedListing: Listing): void {
     if (!this.listing) return;
     editedListing.id = this.listing.id;
-    this.listingService.updateListing(editedListing).subscribe(() => {
+    this.listingService.updateListing(editedListing).then(() => {
       this.router.navigateByUrl('/my-listings');
     });
   }

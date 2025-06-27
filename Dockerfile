@@ -19,5 +19,8 @@ COPY ./client/src ./src
 COPY ./client/public ./public
 
 
-FROM client-base as client-dev
+FROM client-base AS client-dev
 CMD ["ng", "serve", "--host", "0.0.0.0"]
+
+FROM client-base AS client-build
+RUN ng build

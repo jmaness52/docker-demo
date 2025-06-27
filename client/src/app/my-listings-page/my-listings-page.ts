@@ -23,16 +23,13 @@ export class MyListingsPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.listingService.getListingsForUser().subscribe(userListings => {
+    this.listingService.getListingsForUser().then(userListings => {
       this.listings = userListings;
     })
   }
 
-  onDeleteClicked(listingId: string): void {
-    this.listingService.deleteListing(listingId).subscribe(() => {
-       this.listings = this.listings.filter(filterListings => {
-        filterListings.id !== listingId;
-      });
-    });
+  async onDeleteClicked(listingId: string): Promise<any> {
+    await this.listingService.deleteListing(listingId);
+    this.listings = await this.listingService.getListingsForUser();
   }
 }
